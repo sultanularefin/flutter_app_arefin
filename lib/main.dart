@@ -55,10 +55,12 @@ class RandomWordsState extends State<RandomWords> {
     //print(_biggerFont);
 
     // ListView is like FlatList of RN
+    //    doc resource -->
+    //    https://docs.flutter.io/flutter/widgets/ListView-class.html
     return ListView.builder(
         padding: const EdgeInsets.all(16.0),
         itemBuilder: /*1*/ (context, i) {
-         // print('context ==> $context'); // context is not one item as in map(oneItem, index)
+          // print('context ==> $context'); // context is not one item as in map(oneItem, index)
           print('i ==> $i');
           if (i.isOdd) {
             print('i is odd --> $i');
@@ -69,29 +71,36 @@ class RandomWordsState extends State<RandomWords> {
           else{
 
 
-          final index = i ~/ 2; /*3*/
-          if (index >= _suggestions.length) {
+            final index = i ~/ 2; /*3*/
+            if (index >= _suggestions.length) {
 
-            final x = _suggestions.length;
+              final x = _suggestions.length;
 
-            print('since index ($i) >= _suggestions.length($x)');
-            _suggestions.addAll(generateWordPairs().take(10)); /*4*/
+              print('since index ($i) >= _suggestions.length($x)');
+              _suggestions.addAll(generateWordPairs().take(10)); /*4*/
 
-            print('_suggestions ==> $_suggestions');
+              print('_suggestions ==> $_suggestions');
 
-            print('_suggestions is List ==> $_suggestions is list');
+              print('_suggestions is List ==> ');
+              print(_suggestions is List);
+
+              print('_suggestions is Map ==>');
+              print(_suggestions is Map);
+            }
 
 
-          }
-          print('_suggestions[index] ==> $_suggestions[$index]');
-          return _buildRow(_suggestions[index]);
+            print('_suggestions[index] ==>');
+            print(_suggestions[index]);
+
+
+            return _buildRow(_suggestions[index]);
 
           }
         }
-     // itemCount: litems.length,
+      // itemCount: litems.length,
       //  itemCount: 'i',
 
-        );
+    );
   }
 
 //  }
