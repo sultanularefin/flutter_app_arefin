@@ -68,34 +68,43 @@ class RandomWordsState extends State<RandomWords> {
           } /*2*/
 
 
-          else{
+          // else{
 
 
-            final index = i ~/ 2; /*3*/
-            if (index >= _suggestions.length) {
-
-              final x = _suggestions.length;
-
-              print('since index ($i) >= _suggestions.length($x)');
-              _suggestions.addAll(generateWordPairs().take(10)); /*4*/
-
-              print('_suggestions ==> $_suggestions');
-
-              print('_suggestions is List ==> ');
-              print(_suggestions is List);
-
-              print('_suggestions is Map ==>');
-              print(_suggestions is Map);
-            }
+          final index = i ~/ 2; /*3*/
 
 
-            print('_suggestions[index] ==>');
-            print(_suggestions[index]);
+//          when nothing is loaded before _suggestions.addAll(generateWordPairs().take(10)); /*4*/
+          if (index >= _suggestions.length) {
 
 
-            return _buildRow(_suggestions[index]);
+            final x = _suggestions.length;
 
+            print('since index ($i) >= _suggestions.length($x)');
+            _suggestions.addAll(generateWordPairs().take(10)); /*4*/
+
+            print('_suggestions ==> $_suggestions');
+
+            print('_suggestions is List ==> ');
+            print(_suggestions is List);
+
+            print('_suggestions is Map ==>');
+            print(_suggestions is Map);
           }
+
+
+          print('_suggestions[index] ==>');
+
+
+
+          print(_suggestions[index]);
+
+          print('index: $index');
+
+
+          return _buildRow(_suggestions[index]);
+
+          //    }
         }
       // itemCount: litems.length,
       //  itemCount: 'i',
