@@ -64,6 +64,7 @@ class RandomWordsState extends State<RandomWords> {
           print('i ==> $i');
           if (i.isOdd) {
             print('i is odd --> $i');
+            print('divider() executed...');
             return Divider();
           } /*2*/
 
@@ -74,7 +75,7 @@ class RandomWordsState extends State<RandomWords> {
           final index = i ~/ 2; /*3*/
 
 
-//          when nothing is loaded before _suggestions.addAll(generateWordPairs().take(10)); /*4*/
+          // when nothing is loaded before _suggestions.addAll(generateWordPairs().take(10)); /*4*/
           if (index >= _suggestions.length) {
 
 
@@ -91,6 +92,8 @@ class RandomWordsState extends State<RandomWords> {
             print('_suggestions is Map ==>');
             print(_suggestions is Map);
           }
+
+          // when _suggestions.length > = index
 
 
           print('_suggestions[index] ==>');
@@ -115,6 +118,8 @@ class RandomWordsState extends State<RandomWords> {
 //  }
 
   Widget _buildRow(WordPair pair) {
+
+    print('pair: $pair');
     return ListTile(
       title: Text(
         pair.asPascalCase,
