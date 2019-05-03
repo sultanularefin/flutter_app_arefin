@@ -39,11 +39,21 @@ class MyApp extends StatelessWidget {
 
 class RandomWordsState extends State<RandomWords> {
   // TODO Add build() method
-//  @override
-//  Widget build(BuildContext context) {
+  //  @override
+  //  Widget build(BuildContext context) {
   // final wordPair = WordPair.random();
-  final _suggestions = <WordPair>[];
-  final _biggerFont = const TextStyle(fontSize: 18.0);
+
+
+  //  final _suggestions = <WordPair>[];
+  //  final _biggerFont = const TextStyle(fontSize: 18.0);
+
+
+  final List<WordPair> _suggestions = <WordPair>[];
+  final Set<WordPair> _saved = Set<WordPair>();   // Add this line.
+  final TextStyle _biggerFont = TextStyle(fontSize: 18.0);
+
+
+
 
 
 
@@ -118,7 +128,31 @@ class RandomWordsState extends State<RandomWords> {
 //  }
 
   Widget _buildRow(WordPair pair) {
+    final bool alreadySaved = _saved.contains(pair); // Add this line.
+//    ------
+    return ListTile(
+      title: Text(
+        pair.asPascalCase,
+        style: _biggerFont,
+      ),
+      trailing: Icon( // Add the lines from here...
+        alreadySaved ? Icons.favorite : Icons.favorite_border, // same icon with diff. style, border and without border. depending on bool value.
+        color: alreadySaved ? Colors.red : null,
+      ), // ... to here.
+      onTap: () {      // Add 9 lines from here...
+        setState(() {
+          if (alreadySaved) {
+            _saved.remove(pair);
+          } else {
+            _saved.add(pair);
+          }
+        });
+      },               // ... to here.
+    );
+  }
 
+      //   old codes **Widget _buildRow** -------
+/*
     print('pair: $pair');
     return ListTile(
       title: Text(
@@ -127,6 +161,8 @@ class RandomWordsState extends State<RandomWords> {
       ),
     );
   }
+
+  */
   // #enddocregion _buildRow
 
   // #docregion RWS-build
