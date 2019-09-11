@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // final wordPair = WordPair.random();
     return MaterialApp(
-//      title: 'Welcome to Flutter',
+      // title: 'Welcome to Flutter',
       title: 'Startup Name Generator',
       theme: ThemeData(          // Add the 3 lines from here...
         primaryColor: Colors.lime[400],
@@ -54,6 +54,13 @@ class RandomWordsState extends State<RandomWords> {
   final List<WordPair> _suggestions = <WordPair>[];
   final Set<WordPair> _saved = Set<WordPair>();   // Add this line.
   final TextStyle _biggerFont = TextStyle(fontSize: 18.0);
+
+  //  Difference between List and Set in Java.
+  //  List is a type of ordered collection
+  //  that maintains the elements in insertion order
+  //  while Set is a type of unordered collection so elements are not maintained
+  //  any order.
+  //  List allows duplicates while Set doesn't allow duplicate elements .
 
 
 
@@ -128,18 +135,22 @@ class RandomWordsState extends State<RandomWords> {
     );
   }
 
-//  }
+  //  }
 
   Widget _buildRow(WordPair pair) {
     final bool alreadySaved = _saved.contains(pair); // Add this line.
-//    ------
+
+    //    alreadySaved means bookmarked
+    //    ------
     return ListTile(
       title: Text(
         pair.asPascalCase,
         style: _biggerFont,
       ),
       trailing: Icon( // Add the lines from here...
-        alreadySaved ? Icons.favorite : Icons.favorite_border, // same icon with diff. style, border and without border. depending on bool value.
+        alreadySaved ? Icons.favorite : Icons.favorite_border,
+        // same icon with diff. style, border and without border.
+        // depending on bool value.
         color: alreadySaved ? Colors.red : null,
       ), // ... to here.
       onTap: () {      // Add 9 lines from here...
@@ -154,7 +165,7 @@ class RandomWordsState extends State<RandomWords> {
     );
   }
 
-      //   old codes **Widget _buildRow** -------
+  //   old codes **Widget _buildRow** -------
 /*
     print('pair: $pair');
     return ListTile(
@@ -190,8 +201,18 @@ class RandomWordsState extends State<RandomWords> {
     Navigator.of(context).push(
       MaterialPageRoute<void>(   // Add 20 lines from here...
         builder: (BuildContext context) {
+
+
           final Iterable<ListTile> tiles = _saved.map(
                 (WordPair pair) {
+
+              //                  Key key,
+              //                  this.leading,
+              //                  this.title,
+              //                  this.subtitle,
+              //                  this.trailing,
+              // ListTile is one Tile which has properties like above and below.
+
               return ListTile(
                 title: Text(
                   pair.asPascalCase,
@@ -200,10 +221,16 @@ class RandomWordsState extends State<RandomWords> {
               );
             },
           );
+
+
+          //          static Iterable<Widget> divideTiles
+          //          ({ BuildContext context, @required Iterable<Widget>
+          //          tiles, Color color })
           final List<Widget> divided = ListTile
               .divideTiles(
             context: context,
             tiles: tiles,
+            color:Colors.red,
           )
               .toList();
 
