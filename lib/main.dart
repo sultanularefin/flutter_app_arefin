@@ -36,11 +36,18 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class RandomWords extends StatefulWidget {
+  @override
+  RandomWordsState createState() => RandomWordsState();
+//RandomWordsState createState() => new RandomWordsState();
+}
+
+
 
 class RandomWordsState extends State<RandomWords> {
   // TODO Add build() method
-//  @override
-//  Widget build(BuildContext context) {
+  //  @override
+  //  Widget build(BuildContext context) {
   // final wordPair = WordPair.random();
   final _suggestions = <WordPair>[];
   final _biggerFont = const TextStyle(fontSize: 18.0);
@@ -74,7 +81,7 @@ class RandomWordsState extends State<RandomWords> {
           final index = i ~/ 2; /*3*/
 
 
-//          when nothing is loaded before _suggestions.addAll(generateWordPairs().take(10)); /*4*/
+          //  when nothing is loaded before _suggestions.addAll(generateWordPairs().take(10)); /*4*/
           if (index >= _suggestions.length) {
 
 
@@ -140,11 +147,6 @@ class RandomWordsState extends State<RandomWords> {
 // #enddocregion RWS-var
 
 
-class RandomWords extends StatefulWidget {
-  @override
-  RandomWordsState createState() => RandomWordsState();
-//RandomWordsState createState() => new RandomWordsState();
-}
 
 
 
